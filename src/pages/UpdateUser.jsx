@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 
-const NewUser = () => {
-  const handleSubmit = (e) => {
+const UpdateUser = () => {
+  const handleUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
@@ -12,21 +12,21 @@ const NewUser = () => {
     Swal.fire({
       position: "center",
       icon: "success",
-      title: "Data inserted successfully",
+      title: "Data updated successfully",
       showConfirmButton: false,
       timer: 1500,
     });
   };
   return (
     <div className="md:p-10">
-      <form onSubmit={handleSubmit} className="md:w-6/12 mx-auto p-5 text-base">
+      <form onSubmit={handleUpdate} className="md:w-6/12 mx-auto p-5 text-base">
         <Link to={"/"} className="text-base font-bold hover:text-green-500">
           &lt;&lt; All Users
         </Link>
         <div className="text-center space-y-2 mb-10">
-          <h2 className="text-xl font-bold">New User</h2>
+          <h2 className="text-xl font-bold">Update User</h2>
           <p className="text-base font-semibold">
-            Use the below form to create a new user.
+            Use the below form to update an existing user.
           </p>
         </div>
         <div className="space-y-3">
@@ -106,13 +106,13 @@ const NewUser = () => {
         <button
           type="submit"
           className="p-2
-          required w-full mt-5 bg-green-400 font-bold rounded cursor-pointer"
+      required w-full mt-5 bg-green-400 font-bold rounded cursor-pointer"
         >
-          Save
+          Update
         </button>
       </form>
     </div>
   );
 };
 
-export default NewUser;
+export default UpdateUser;

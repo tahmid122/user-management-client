@@ -33,9 +33,12 @@ const Home = () => {
                 <td>tahmid@gmail.com</td>
                 <td>Male</td>
                 <td className="flex items-center justify-center gap-3">
-                  <span className="p-2 rounded shadow shadow-gray-300 cursor-pointer hover:bg-green-500 hover:text-white">
+                  <Link
+                    to={"/update-user/01"}
+                    className="p-2 rounded shadow shadow-gray-300 cursor-pointer hover:bg-green-500 hover:text-white"
+                  >
                     <BsPencilSquare size={20} />
-                  </span>
+                  </Link>
                   <span className="p-2 rounded shadow shadow-gray-300 cursor-pointer hover:bg-red-500 hover:text-white">
                     <FaXmark size={20} />
                   </span>
