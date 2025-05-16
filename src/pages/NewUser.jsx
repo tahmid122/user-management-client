@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router";
 
 const NewUser = () => {
   return (
     <div className="md:p-10">
-      <span className="text-base font-bold p-2">&lt;&lt; All Users</span>
       <form className="md:w-6/12 mx-auto p-5 text-base">
+        <Link to={"/"} className="text-base font-bold hover:text-green-500">
+          &lt;&lt; All Users
+        </Link>
         <div className="text-center space-y-2 mb-10">
           <h2 className="text-xl font-bold">New User</h2>
           <p className="text-base font-semibold">
