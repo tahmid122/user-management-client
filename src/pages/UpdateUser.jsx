@@ -1,14 +1,27 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const UpdateUser = () => {
+  const user = useLoaderData();
+  const navigate = useNavigate();
+  const { _id, name, email, gender, status } = user;
+  console.log(user);
   const handleUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
     const newUser = Object.fromEntries(formData.entries());
     console.log(newUser);
+    fetch(`http://localhost:5000/users/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
     Swal.fire({
       position: "center",
       icon: "success",
@@ -16,6 +29,7 @@ const UpdateUser = () => {
       showConfirmButton: false,
       timer: 1500,
     });
+    navigate("/");
   };
   return (
     <div className="md:p-10">
@@ -38,6 +52,7 @@ const UpdateUser = () => {
               type="text"
               name="name"
               required
+              defaultValue={name}
               className="outline-none border border-slate-300 px-2 py-1 w-full rounded"
             />
           </div>
@@ -48,6 +63,7 @@ const UpdateUser = () => {
             <input
               type="email"
               name="email"
+              defaultValue={email}
               required
               className="outline-none border border-slate-300 px-2 py-1 w-full rounded"
             />
@@ -58,9 +74,10 @@ const UpdateUser = () => {
               <div>
                 <input
                   type="radio"
-                  name="Gender"
+                  name="gender"
                   required
-                  value="male"
+                  value="Male"
+                  defaultChecked={gender === "Male" ? true : false}
                   className="mr-2"
                 />
                 <label htmlFor="Male">Male</label>
@@ -68,9 +85,10 @@ const UpdateUser = () => {
               <div>
                 <input
                   type="radio"
-                  name="Gender"
+                  name="gender"
                   required
                   value="Female"
+                  defaultChecked={gender === "Female" ? true : false}
                   className="mr-2"
                 />
                 <label htmlFor="Female">Female</label>
@@ -85,7 +103,8 @@ const UpdateUser = () => {
                   type="radio"
                   name="status"
                   required
-                  value="active"
+                  value="Active"
+                  defaultChecked={status === "Active" ? true : false}
                   className="mr-2"
                 />
                 <label htmlFor="Active">Active</label>
@@ -95,7 +114,8 @@ const UpdateUser = () => {
                   type="radio"
                   name="status"
                   required
-                  value="inactive"
+                  value="Inactive"
+                  defaultChecked={status === "Inactive" ? true : false}
                   className="mr-2"
                 />
                 <label htmlFor="inactive">Inactive</label>

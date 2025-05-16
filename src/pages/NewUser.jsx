@@ -8,14 +8,26 @@ const NewUser = () => {
     const form = e.target;
     const formData = new FormData(form);
     const newUser = Object.fromEntries(formData.entries());
-    console.log(newUser);
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Data inserted successfully",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          console.log(data);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Data inserted successfully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
   return (
     <div className="md:p-10">
@@ -58,9 +70,9 @@ const NewUser = () => {
               <div>
                 <input
                   type="radio"
-                  name="Gender"
+                  name="gender"
                   required
-                  value="male"
+                  value="Male"
                   className="mr-2"
                 />
                 <label htmlFor="Male">Male</label>
@@ -68,7 +80,7 @@ const NewUser = () => {
               <div>
                 <input
                   type="radio"
-                  name="Gender"
+                  name="gender"
                   required
                   value="Female"
                   className="mr-2"
@@ -85,7 +97,7 @@ const NewUser = () => {
                   type="radio"
                   name="status"
                   required
-                  value="active"
+                  value="Active"
                   className="mr-2"
                 />
                 <label htmlFor="Active">Active</label>
@@ -95,7 +107,7 @@ const NewUser = () => {
                   type="radio"
                   name="status"
                   required
-                  value="inactive"
+                  value="Inactive"
                   className="mr-2"
                 />
                 <label htmlFor="inactive">Inactive</label>

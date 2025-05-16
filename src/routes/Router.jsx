@@ -10,9 +10,18 @@ export const router = createBrowserRouter([
     path: "/",
     Component: RootLayout,
     children: [
-      { index: true, Component: Home },
+      {
+        index: true,
+        Component: Home,
+        loader: () => fetch("http://localhost:5000/users"),
+      },
       { path: "new-user", Component: NewUser },
-      { path: "update-user/:id", Component: UpdateUser },
+      {
+        path: "update-user/:id",
+        Component: UpdateUser,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/users/${params.id}`),
+      },
     ],
   },
   {
