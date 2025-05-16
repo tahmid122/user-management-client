@@ -8,7 +8,7 @@ const NewUser = () => {
     const form = e.target;
     const formData = new FormData(form);
     const newUser = Object.fromEntries(formData.entries());
-    fetch("http://localhost:5000/users", {
+    fetch("https://user-management-server-ashy.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

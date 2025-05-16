@@ -13,7 +13,7 @@ const UpdateUser = () => {
     const formData = new FormData(form);
     const newUser = Object.fromEntries(formData.entries());
     console.log(newUser);
-    fetch(`http://localhost:5000/users/${_id}`, {
+    fetch(`https://user-management-server-ashy.vercel.app/users/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

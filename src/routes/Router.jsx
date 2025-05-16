@@ -13,14 +13,17 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-        loader: () => fetch("http://localhost:5000/users"),
+        loader: () =>
+          fetch("https://user-management-server-ashy.vercel.app/users"),
       },
       { path: "new-user", Component: NewUser },
       {
         path: "update-user/:id",
         Component: UpdateUser,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/users/${params.id}`),
+          fetch(
+            `https://user-management-server-ashy.vercel.app/users/${params.id}`
+          ),
       },
     ],
   },
